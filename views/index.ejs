@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
   <title>Session Management in NodeJS using Node and Express</title>
@@ -16,7 +17,7 @@
         */
         $.post("/login",{email:email,pass:pass},function(data){
           if(data==='done') {
-            window.location.href="/admin";
+            window.location.href="/users";
           }
         });
       });

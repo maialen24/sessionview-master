@@ -68,7 +68,7 @@ router.use(session({
 
 router.get('/',(req,res) => {
   if(req.session.email) {
-    return res.redirect('/admin');
+    return res.redirect('/users');
   }
   res.render('index', { title : 'title'});
 });
@@ -78,7 +78,7 @@ router.post('/login',(req,res) => {
   session_email=req.session.email;
   res.end('done');
 });
-
+/*
 router.get('/admin',(req,res) => {
   if(req.session.email) {
       db.users.find( function(err, docs){
@@ -100,6 +100,16 @@ router.get('/admin',(req,res) => {
     res.write('<h1>Please login first.</h1>');
     res.end('<a href='+'/'+'>Login</a>');
   }
+});*/
+router.get('/admin',(req,res) => {
+    if(req.session.email) {
+        res.write(`<h1>Hello ${req.session.email} </h1><br>`);
+        res.end('<a href='+'/logout'+'>Logout</a>');
+    }
+    else {
+        res.write('<h1>Please login first.</h1>');
+        res.end('<a href='+'/'+'>Login</a>');
+    }
 });
 
 router.get('/logout',(req,res) => {
@@ -264,7 +274,7 @@ router.post('/users/add', function(req, res){
             } else {
                 db.users.insert(newUser)
             }
-            res.redirect('/admin');
+            res.redirect('/users');
         });
 //	console.log(newUser)
     }else{
@@ -280,7 +290,7 @@ router.delete('/users/delete/:id', function(req, res){
             if (err) {
                 console.log(err);
             }
-            res.redirect(303, '/admin');
+            res.redirect(303, '/users');
         });
     }else{
         res.write('<h1>Please login first.</h1>');
@@ -317,7 +327,7 @@ router.post('/users/update/:id', function(req, res){
                 console.log(err);
             }
             console.log('EDIT')
-            res.redirect(303, '/admin');
+            res.redirect(303, '/users');
 
         });}
     }else{

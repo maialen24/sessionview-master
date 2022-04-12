@@ -14,7 +14,7 @@ function deleteUser(){
 			type: 'DELETE',
 			url:  '/users/delete/'+$(this).data('id')
 		}).done(function(response){
-			window.location.replace('/admin')
+			window.location.replace('/users')
 		});
 	} else {
 		return false;
