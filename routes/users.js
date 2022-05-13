@@ -18,7 +18,9 @@ var  ObjectId = mongojs.ObjectId;
 var db = mongojs('clientesapp', ['users']);
 //--
 
-
+/*admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+});*/
 
 //++
 // Middleware para el parseo del body
